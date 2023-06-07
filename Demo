@@ -1,0 +1,78 @@
+print("hola mundo")
+class Libro:
+    def __init__(self, titulo, autor, ISBN, precio, stock):
+        self.titulo = titulo
+        self.autor = autor
+        self.ISBN = ISBN
+        self.precio = precio
+        self.stock = stock
+
+    def getStock(self):
+        return self.stock
+
+    def venderLibro(self, cantidad):
+        if self.stock >= cantidad:
+            self.stock -= cantidad
+            return True
+        else:
+            return False
+
+    def obtenerInformacion(self):
+        return f"Título: {self.titulo}\nAutor: {self.autor}\nISBN: {self.ISBN}\nPrecio: {self.precio}"
+
+
+class Usuario:
+    def __init__(self, nombre, correo):
+        self.nombre = nombre
+        self.correo = correo
+
+    def marcarFavorito(self, libro):
+        # Lógica para marcar libro como favorito para el usuario
+        pass
+
+
+class Administrador(Usuario):
+    def publicarLibro(self, libro):
+        # Lógica para publicar un libro (solo para administradores)
+        pass
+
+    def bajarStock(self, libro, cantidad):
+        libro.stock -= cantidad
+
+
+class Venta:
+    def __init__(self, libro, cantidad):
+        self.libroVendido = libro
+        self.cantidad = cantidad
+        self.precioTotal = libro.precio * cantidad
+
+    def realizarVenta(self):
+        if self.libroVendido.venderLibro(self.cantidad):
+            self.generarFactura()
+            self.guardarFacturaEnArchivo()
+
+    def generarFactura(self):
+        # Lógica para generar la factura de la venta
+        pass
+
+    def guardarFacturaEnArchivo(self):
+        # Lógica para guardar la factura en un archivo
+        pass
+
+
+class Libreria:
+    def __init__(self):
+        self.listaLibros = []
+        self.listaUsuarios = []
+        self.listaVentas = []
+
+    def agregarLibro(self, libro):
+        self.listaLibros.append(libro)
+
+    def agregarUsuario(self, usuario):
+        self.listaUsuarios.append(usuario)
+
+    def realizarVenta(self, libro, cantidad):
+        venta = Venta(libro, cantidad)
+        venta.realizarVenta()
+        self.listaVentas.append(venta)
