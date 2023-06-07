@@ -1,4 +1,4 @@
-print("hola mundo")
+
 class Libro:
     def __init__(self, titulo, autor, ISBN, precio, stock):
         self.titulo = titulo
